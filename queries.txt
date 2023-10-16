@@ -1,0 +1,132 @@
+create table Items(
+ i_id int not null primary key identity,
+ isbn int not null unique,
+ title nvarchar(100),
+ author nvarchar(100),
+ genre nvarchar(50),
+ price decimal (10,2),
+ i_type nvarchar(15),
+)
+
+create table OrdDetails(
+i_id int not null,
+o_id int not null	,
+o_date datetime,
+
+primary key (i_id, o_id),
+foreign key(i_id) references items(i_id),
+foreign key(o_id) references orders(o_id)
+)
+
+delete from Orders
+
+insert into Items
+values(1000,'Any','John','Action',1000.00,'Ebook')
+
+insert into Orders
+values(1,1000,'Lapu Lapu City',1)
+
+insert into Items
+values(1001,'New Book','Paul','Action',1500.00,'Book')
+
+insert into Orders
+values (2,2500,'Lapu Lapu City',3)
+
+insert into OrdDetails
+values(1,1,'October 2, 2023')
+
+select * from OrdDetails
+	
+select c.c_name,i.title from Customer c
+inner join Orders o on o.c_id = c.c_id
+inner join OrdDetails od on od.o_id = o.o_id
+inner join items i on i.i_id = od.i_id
+
+
+
+DBCC CHECKIDENT ('Items', RESEED, 0);
+
+
+
+OCTOBER 9 2023
+insert into items
+--(123,'Data Structures and Algorithms','Malik','Education',980,'Book');
+values (124,'Harry Potter','JK Rowling','Fantasy, Drama, Fiction',500,'AudioBook'),
+(125,'Snow White and the Seven Dwarfs','Grimm','Fantasy, Drama, Fiction',300,'EBook'),
+(126,'The Legends End','Keishi Otomo','Action, Fantasy',350,'AudioBook'),
+(127,'Snow White and the Seven Dwarfs','Grimm','Fantasy, Drama, Fiction',350,'EBook'),
+(128,'Harry Potter','JK Rowling','Fantasy, Drama, Fiction',700,'Book'),
+(129,'Harry Potter','JK Rowling','Fantasy, Drama, Fiction',400,'EBook'),
+(130,'The Legends End','Keishi Otomo','Action, Fantasy',300,'EBook'),
+(131,'The Legends End','Keishi Otomo','Action, Fantasy',350,'AudioBook'),
+(132,'The Legends End','Keishi Otomo','Action, Fantasy',450,'Book');
+
+
+insert into OrdDetails
+values(1,2,1),
+(1,3,2),
+(2,2,2),
+(2,4,2),
+(2,5,1),
+(3,6,3),
+(4,2,3),
+(4,5,1),
+(4,10,1),
+(5,3,2),
+(6,1,1);
+
+UPDATE OrdDetails
+SET o_id = 0;
+DBCC CHECKIDENT ('Items', RESEED, 0);
+dbcc checkident (	'OrdDetails',reseed,0);
+set identity_insert OrdDetails on;
+DBCC CHECKIDENT('OrdDetails', RESEED, 0);
+delete from OrdDetails;
+
+
+
+insert into Review
+values--(1,4,'Good','6/10/2023',4)
+(2,3,'Fair','7/10/2023',3),
+(3,5,'Love it!','7/10/2023',6)	,
+(4,2,'None','8/10/2023',10),
+(5,3,'None','8/10/2023',10),
+(6,3,'None','8/10/2023',4)
+
+
+
+select c.c_name,i.title from Customer c
+inner join Orders o on o.c_id = c.c_id
+inner join OrdDetails od on od.o_id = o.o_id
+inner join items i on i.i_id = od.i_id
+
+
+	select c.c_name,o.o_date,o.o_address
+	from Orders o
+	inner join Customer c on o.c_id = c.c_id
+
+select i.title,OrdDetails.qty,o.o_date
+from OrdDetails o
+inner join Items i on o.i_title = i_title
+
+
+SELECT Items.title, Review.rating, Review.comment, Customer.c_name
+FROM items
+JOIN Review ON Items.i_id = Review.i_id
+JOIN Customer ON Review.r_id = Customer.c_id;
+
+select i.title as "Title", od.qty as "Quantity ordered", o.o_date as "Date Ordered" from Items i
+inner join OrdDetails od on od.i_id = i.i_id
+inner join Orders o on o.o_id = od.o_id
+
+
+select i.title as "Title", od.qty as "Quantity ordered", o.o_date as "Date Ordered" from Items i
+inner join OrdDetails od on od.i_id = i.i_id
+inner join Orders o on o.o_id = od.o_id
+
+
+create procedure [dbo].[mybackupdb]
+as
+backup database [Activity_Circulado] to DISK = N'C:\Circulado'
+
+
