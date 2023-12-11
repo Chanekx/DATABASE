@@ -45,3 +45,38 @@
         <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
     </section>
 </asp:Content>
+
+
+// ORIGINAL BACKEND CODE
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication1.Account
+{
+    public partial class Login : Page
+    {
+        protected TextBox userName;
+        protected TextBox password;
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            RegisterHyperLink.NavigateUrl = "Register.aspx";
+            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+
+            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            if (!String.IsNullOrEmpty(returnUrl))
+            {
+                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+            }
+        }
+
+        protected void login_Click(object sender, EventArgs e)
+        {
+            
+        }
+    }
+}
